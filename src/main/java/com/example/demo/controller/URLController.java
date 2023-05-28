@@ -4,6 +4,7 @@ import com.example.demo.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,8 +21,9 @@ public class URLController {
     }
 
     @GetMapping("test")
-    public String getTest(Model model)//对应函数
+    public String getTest(@RequestParam("id") String id, Model model)//对应函数
     {
+        System.out.println(id);
         User user1=new User("bigsai",22,"一个幽默且热爱java的社会青年");
         List<String> userList=new ArrayList<>();
         userList.add("zhang san 66");
