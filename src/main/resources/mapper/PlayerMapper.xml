@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PlayerMapper">
+    <parameterMap id="Pagination" type="com.example.demo.pojo.Pagination">
+        <parameter property="offset" javaType="string" />
+        <parameter property="size" javaType="string" />
+        <parameter property="page" javaType="string" />
+        <parameter property="keywords" javaType="string" />
+    </parameterMap>
+
+    <resultMap type="com.example.demo.pojo.Player" id="Player">
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="p_name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="age" jdbcType="VARCHAR" property="age"/>
+        <result column="group_id" jdbcType="VARCHAR" property="groupId"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+    </resultMap>
+    <select id="getList"  parameterMap="Pagination" resultMap="Player">
+        select * from player where 1 = 1 and name like #{keyword} limit #{offset},#{size};
+    </select>
+</mapper>

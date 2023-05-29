@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>球队列表</title>
+    <link th:href="@{/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/group.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/axios.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap.js}"></script>
+    <script>
+        const request = axios.create()
+        function del(id) {
+            console.log(id)
+            // return request({
+            //     url:"/group/del",
+            //     params
+            // })
+        }
+    </script>
+</head>
+<body>
+    <div class="app-layout">
+        <div class="accordion" id="accordionExample" style="width: 20%;margin-right: 20px">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            球队管理
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <li class="list-group-item">球队管理</li>
+                        <li class="list-group-item">更新球队</li>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            球员管理
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <li class="list-group-item">球员列表</li>
+                        <li class="list-group-item">更新球员</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table border="1" class="table">
+            <thead>
+            <tr>
+                <th>球队名称</th>
+                <th>球队照片</th>
+                <th>球队详细信息</th>
+                <th>球队成立时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item:${GroupList}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.avatar}"></td>
+                <td th:text="${item.desc}"></td>
+                <td th:text="${item.createTime}"></td>
+                <td>
+                    <button class="btn btn-primary">编辑</button>
+                    <button class="btn btn-danger" th:onclick="del([[${item}]])">删除</button>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>球队列表</title>
+    <link th:href="@{/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/axios.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap.js}"></script>
+</head>
+<body>
+<div class="container">
+    <table border="1" class="table">
+        <thead>
+        <tr>
+            <th>球队名称</th>
+            <th>球队照片</th>
+            <th>球队详细信息</th>
+            <th>球队成立时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item:${GroupList}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.avatar}"></td>
+                <td th:text="${item.desc}"></td>
+                <td th:text="${item.createTime}"></td>
+                <td>
+                    <button class="btn btn-primary">编辑</button>
+                    <button class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</body>
+</html>
