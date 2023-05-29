@@ -8,3 +8,9 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/ball?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+  servlet:
+    multipart:
+      max-file-size: 10MB  # 指定文件大小最大值，默认1MB
+      max-request-size: 50MB # 指定每次请求的最大值，默认为10MB
+      enabled: true  # 是否开启文件上传支持，默认为true
+
