@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface GroupMapper {
     List<Group> getList(@Param("keyword")String keyword,@Param("offset")Integer offset,@Param("size")Integer size);
-    Integer delOne(@Param("id")String id);
-    Integer update(Group group);
+    void del(@Param("id")String id);
+    void modify(Group group);
+    void add(Group group);
+    List<Integer> getCount(@Param("id")String id);
 }

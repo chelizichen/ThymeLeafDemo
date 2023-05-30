@@ -20,4 +20,16 @@ public class PlayerService {
         List<Player> list = playerMapper.getList(pagination.getKeyword(),pagination.getOffset(),pagination.getSize());
         return list;
     }
+
+    public Integer add(Player player){
+        return playerMapper.add(player);
+    }
+
+    public Integer modify(Player player){
+        return playerMapper.modify(player);
+    }
+
+    public Integer del(String id){
+        return playerMapper.del(id);
+    }
 }

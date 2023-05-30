@@ -9,35 +9,64 @@
     <script type="text/javascript" th:src="@{/bootstrap.js}"></script>
 </head>
 <body>
-<form id="postForm">
+<div id="postForm">
     <div class="form-group">
-        <label for="title">标题</label>
+        <label for="title">球队名称</label>
         <input type="text" id="title" name="title" class="form-control" placeholder="请输入标题">
     </div>
 
     <div class="form-group">
-        <label for="content">内容</label>
+        <label for="content">球队简介</label>
         <textarea id="content" name="content" class="form-control" placeholder="请输入内容"></textarea>
     </div>
 
     <div class="form-group">
-        原神：<input type="radio"  id="r-ys" name="TYPE" value="1" onclick="selectYs()"/>
-        崩三：<input type="radio"  id="r-bs" name="TYPE" value="2" onclick="selectBs()"/>
-    </div>
-
-    <div class="form-group">
-        <label for="fileupload">图片上传</label>
-        <!-- <input type="file" id="image" name="file" class="form-control-file"> -->
+        <label for="fileupload">球队照片</label>
         <input id="fileupload" type="file" class="form-control-file" name="file">
     </div>
 
     <div class="form-group" >
-        <button type="button" class="btn btn-primary" onclick="submit()">提交</button>
+        <button type="button" class="btn btn-primary" th:onclick="submit([[${id}]])">提交</button>
         <button type="button" class="btn btn-secondary" onclick="cancel()">取消</button>
     </div>
 
-</form>
+</div>
 <script>
+    const request = axios.create()
+
+    function modify(data) {
+        return request({
+            url: "/group/modify",
+            method:"post",
+            data
+        })
+    }
+
+    function add(data) {
+        return request({
+            url: "/group/add",
+            method:"post",
+            data
+        })
+    }
+
+    function submit(id) {
+        const name = $("#title").val()
+        const desc = $("#content").val()
+        const avatar = picUrl;
+        const body = {
+            name,
+            desc,
+            avatar
+        }
+        if(id){
+            body.id = id;
+            modify(body)
+        }else{
+            add(body)
+        }
+    }
+
     var picUrl = ""
     $("#fileupload").on("change", function () {
         var file = this.files[0];

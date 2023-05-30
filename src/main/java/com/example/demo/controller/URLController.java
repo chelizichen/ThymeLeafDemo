@@ -25,6 +25,7 @@ public class URLController {
     @Autowired
     FileService fileService;
 
+
     @GetMapping("index")//页面的url地址
     public String getindex(Model model)//对应函数
     {

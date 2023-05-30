@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface PlayerMapper {
     List<Player> getList(@Param("keyword")String keyword,@Param("offset")Integer offset,@Param("size")Integer size);
-    Integer delOne(@Param("id")String id);
-    Integer update(Player player);
+    Integer del(@Param("id")String id);
+    Integer modify(Player group);
+    Integer add(Player group);
 }

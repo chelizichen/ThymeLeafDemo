@@ -8,6 +8,16 @@
         <parameter property="keywords" javaType="string" />
     </parameterMap>
 
+<!--    <parameterMap id="PlayerParam" type="com.example.demo.pojo.Player">-->
+<!--        <parameter property="id" javaType="string" />-->
+<!--        <parameter property="name" javaType="string" />-->
+<!--        <parameter property="sex" javaType="string" />-->
+<!--        <parameter property="age" javaType="string" />-->
+<!--        <parameter property="avatar" javaType="string" />-->
+<!--        <parameter property="groupId" javaType="string" />-->
+<!--        <parameter property="createTime" javaType="string" />-->
+<!--    </parameterMap>-->
+
     <resultMap type="com.example.demo.pojo.Player" id="Player">
         <result column="id" jdbcType="VARCHAR" property="id"/>
         <result column="p_name" jdbcType="VARCHAR" property="name"/>
@@ -17,7 +27,28 @@
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
     </resultMap>
-    <select id="getList"  parameterMap="Pagination" resultMap="Player">
-        select * from player where 1 = 1 and name like #{keyword} limit #{offset},#{size};
+    <select id="getList"  parameterType="Pagination" resultMap="Player">
+        SELECT player.*
+        FROM player
+                 JOIN ball_group ON player.group_id = ball_group.id
+        WHERE ball_group.g_name LIKE #{keyword} or player.p_name LIKE #{keyword}
+        limit #{offset},#{size};
     </select>
+
+    <update id="modify"  parameterType="com.example.demo.pojo.Player">
+        update player set p_name = #{name},
+                          sex = #{sex},
+                          age = #{age},
+                          avatar = #{avatar},
+                          group_id = #{groupId}
+        where id = #{id}
+    </update>
+    <delete id="del" parameterType="String">
+        delete from player where id = #{id}
+    </delete>
+
+    <insert id="add" parameterType="com.example.demo.pojo.Player">
+        insert into player(p_name,sex,age,avatar,group_id,create_time) values  (#{name},#{sex},#{age},#{avatar},#{group_id},#{createTime})
+    </insert>
+
 </mapper>
