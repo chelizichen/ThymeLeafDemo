@@ -7,18 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Group {
+public class Team {
     public String id;
-
-
-    public String name;
-
-    // 球队图片
-    public String avatar;
-
-    public String desc;
-
-    public String createTime;
-
-
+    public String t_name ;
+    public String country ;
+    public String coach ;
 }

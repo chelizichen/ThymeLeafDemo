@@ -1,45 +1,74 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>球队添加</title>
-    <link th:href="@{/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/bootstrap.css}" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" th:src="@{/jquery.js}"></script>
     <script type="text/javascript" th:src="@{/axios.js}"></script>
     <script type="text/javascript" th:src="@{/bootstrap.js}"></script>
 </head>
 <body>
-<div id="postForm">
-    <div class="form-group">
-        <label for="name">球员名称</label>
-        <input type="text" id="name" name="title" class="form-control" placeholder="请输入标题">
-    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-dark" style="height: 100vh">
+            <ul class="nav flex-column">
+                <li class="nav-item" onclick="linkTo('/team/list')">
+                    <a class="nav-link text-light"  >球队管理</a>
+                </li>
+                <li class="nav-item" onclick="linkTo('/team/update')">
+                    <a class="nav-link text-light" >添加球队</a>
+                </li>
+                <li class="nav-item"  onclick="linkTo('/player/list')">
+                    <a class="nav-link text-light" >球员管理</a>
+                </li>
+                <li class="nav-item" onclick="linkTo('/player/update')">
+                    <a class="nav-link text-light"  >添加球员</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Player</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Update</li>
+                </ol>
+            </nav>
 
-    <div class="form-group">
-        <label for="sex">球员性别</label>
-        <input type="text" id="sex" name="title" class="form-control" placeholder="请输入标题">
-    </div>
+            <div id="postForm">
+                <div class="form-group">
+                    <label for="name">球员名称</label>
+                    <input type="text" id="name" name="title" class="form-control" placeholder="请输入标题">
+                </div>
 
-    <div class="form-group">
-        <label for="age">年龄</label>
-        <input type="text" id="age" name="title" class="form-control" placeholder="请输入标题">
-    </div>
+                <div class="form-group">
+                    <label for="sex">球员性别</label>
+                    <input type="text" id="sex" name="title" class="form-control" placeholder="请输入标题">
+                </div>
 
-    <div class="form-group">
-        <label for="groupId">球队ID</label>
-        <input type="text" id="groupId" name="title" class="form-control" placeholder="请输入标题">
-    </div>
+                <div class="form-group">
+                    <label for="age">年龄</label>
+                    <input type="text" id="age" name="title" class="form-control" placeholder="请输入标题">
+                </div>
 
-    <div class="form-group">
-        <label for="fileupload">照片</label>
-        <input id="fileupload" type="file" class="form-control-file" name="file">
-    </div>
+                <div class="form-group">
+                    <label for="groupId">球队ID</label>
+                    <input type="text" id="groupId" name="title" class="form-control" placeholder="请输入标题">
+                </div>
 
-    <div class="form-group" >
-        <button type="button" class="btn btn-primary" th:onclick="submit([[${id}]])">提交</button>
-        <button type="button" class="btn btn-secondary" onclick="cancel()">取消</button>
-    </div>
+                <div class="form-group">
+                    <label for="fileupload">照片</label>
+                    <input id="fileupload" type="file" class="form-control-file" name="file">
+                </div>
 
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" th:onclick="submit([[${id}]])">提交</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancel()">取消</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     const request = axios.create()
@@ -47,7 +76,7 @@
     function modify(data) {
         return request({
             url: "/player/modify",
-            method:"post",
+            method: "post",
             data
         })
     }
@@ -55,7 +84,7 @@
     function add(data) {
         return request({
             url: "/player/add",
-            method:"post",
+            method: "post",
             data
         })
     }
@@ -73,10 +102,10 @@
             groupId,
             avatar,
         }
-        if(id){
+        if (id) {
             body.id = id;
             modify(body)
-        }else{
+        } else {
             add(body)
         }
     }
@@ -86,8 +115,6 @@
         var file = this.files[0];
         var data = new FormData();
         data.append("file", file);
-        console.log(data);
-        console.log(file);
         $.ajax({
             type: "post",
             url: "/upload",
@@ -104,6 +131,9 @@
         });
     })
 
+    function linkTo(path) {
+        location.href = path
+    }
 </script>
 </body>
 </html>

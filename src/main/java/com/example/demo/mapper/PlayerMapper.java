@@ -1,10 +1,7 @@
 package com.example.demo.mapper;
 
-import com.example.demo.pojo.Group;
-import com.example.demo.pojo.Pagination;
 import com.example.demo.pojo.Player;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,8 +9,21 @@ import java.util.List;
 @Mapper
 @Repository
 public interface PlayerMapper {
-    List<Player> getList(@Param("keyword")String keyword,@Param("offset")Integer offset,@Param("size")Integer size);
+
+    @Select("select * from player  where p_name like #{keyword}")
+    List<Player> getList(@Param("keyword")String keyword);
+
+    @Delete("delete from player where id = #{id}")
     Integer del(@Param("id")String id);
-    Integer modify(Player group);
-    Integer add(Player group);
+
+    @Update("      update player set p_name = #{p_name},\n" +
+            "  age = #{age},\n" +
+            " nationality = #{nationality}\n" +
+            " team_id = #{team_id},\n" +
+            " img_src = #{img_src},\n" +
+            "        where id = #{id}")
+    Integer modify(Player player);
+
+    @Insert("insert into player(p_name,age,nationality,team_id,img_src) values  (#{p_name},#{age},#{nationality},#{team_id},#{img_src})")
+    Integer add(Player player);
 }

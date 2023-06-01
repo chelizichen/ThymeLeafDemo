@@ -3,6 +3,7 @@ package com.example.demo.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.relational.core.mapping.Column;
 
 @Data
 @NoArgsConstructor
@@ -11,15 +12,9 @@ public class Player {
 
     public String id;
 
-    public String name;
-
-    public String sex;
-
+    public String p_name;
     public String age;
-
-    public String groupId;
-
-    public String avatar;
-
-    public String createTime;
+    public String nationality;
+    public String team_id;
+    public String img_src;
 }

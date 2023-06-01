@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>球队列表</title>
+    <link th:href="@{/bootstrap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/group.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/axios.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap.js}"></script>
+    <script>
+        const request = axios.create()
+
+        async function del(id) {
+            console.log(id)
+            const params = {
+                id
+            }
+            const data = await request({
+                url: "/team/del",
+                params
+            })
+            if (data.data == 0) {
+                alert("删除成功")
+                location.reload();
+            } else {
+                alert("删除失败，该球队已含有角色")
+            }
+
+        }
+
+        function linkTo(path) {
+            location.href = path
+        }
+
+        function search() {
+            const text = $("#keyword").val()
+            linkTo("/team/list?keyword=" + text)
+        }
+
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-dark" style="height: 100vh">
+            <ul class="nav flex-column">
+                <li class="nav-item" onclick="linkTo('/team/list')">
+                    <a class="nav-link text-light"  >球队管理</a>
+                </li>
+                <li class="nav-item" onclick="linkTo('/team/update')">
+                    <a class="nav-link text-light" >添加球队</a>
+                </li>
+                <li class="nav-item"  onclick="linkTo('/player/list')">
+                    <a class="nav-link text-light" >球员管理</a>
+                </li>
+                <li class="nav-item" onclick="linkTo('/player/update')">
+                    <a class="nav-link text-light"  >添加球员</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Team</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">List</li>
+                </ol>
+            </nav>
+            <div class="input-group mb-3">
+                <input id="keyword" type="text" class="form-control" placeholder="请输入球队名称" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="search()">查询</button>
+                </div>
+            </div>
+            <table border="1" class="table">
+
+                <thead class="thead-dark">
+                <tr>
+                    <th>球队名称</th>
+                    <th>球队教练</th>
+                    <th>球队国家</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="item:${teamList}">
+                    <td th:text="${item.t_name}"></td>
+                    <td th:text="${item.coach}"></td>
+                    <td th:text="${item.country}"></td>
+                    <td>
+                        <button class="btn btn-primary" th:onclick="linkTo('/team/update?id='+[[${item.id}]])">编辑</button>
+                        <button class="btn btn-danger" th:onclick="del([[${item.id}]])">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
