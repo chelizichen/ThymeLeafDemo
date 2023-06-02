@@ -1,5 +1,8 @@
 package com.example.demo.config;
 
+/**
+ * 返回状态码 默认 code 0 message : 'OK' DATA:T
+ */
 public class Ret<T> {
     public int code;
     public String message;
