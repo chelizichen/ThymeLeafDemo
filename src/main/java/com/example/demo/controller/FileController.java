@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+// 文件上传接口
 @Controller
 @RequestMapping("file")
 public class FileController {
@@ -17,6 +18,7 @@ public class FileController {
     @Autowired
     FileService fileService;
 
+    // 上传图片
     @PostMapping("/upload")
     public ResponseEntity<String> uploadImage(@RequestPart(value = "file") MultipartFile file) {
         try {

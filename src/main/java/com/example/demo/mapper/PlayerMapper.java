@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * MYBatis 类
+ */
 @Mapper
 @Repository
 public interface PlayerMapper {

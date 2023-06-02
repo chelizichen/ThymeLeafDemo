@@ -11,6 +11,7 @@
     <script>
         const request = axios.create()
 
+        // 删除方法
         async function del(id) {
             console.log(id)
             const params = {
@@ -32,7 +33,7 @@
         function linkTo(path) {
             location.href = path
         }
-
+        // 搜索球队
         function search() {
             const text = $("#keyword").val()
             linkTo("/team/list?keyword=" + text)

@@ -61,6 +61,7 @@
 <script>
     const request = axios.create()
 
+    // 修改球员
     function modify(data) {
         return request({
             url: "/team/modify",
@@ -69,6 +70,7 @@
         })
     }
 
+    // 添加球队
     function add(data) {
         return request({
             url: "/team/add",
@@ -77,6 +79,7 @@
         })
     }
 
+    // 提交
     function submit(id) {
         const t_name = $("#t_name").val()
         const country = $("#country").val()
@@ -94,6 +97,7 @@
         }
     }
 
+    // 跳转方法
     function linkTo(path) {
         location.href = path
     }
