@@ -18,23 +18,27 @@
         <result column="g_desc" jdbcType="VARCHAR" property="desc"/>
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
     </resultMap>
+<!--    获取列表 -->
     <select id="getList" parameterType="Pagination" resultMap="Group">
         select * from ball_group where 1 = 1 and ball_group.g_name like #{keyword} limit #{offset},#{size};
     </select>
+    <!--    修改 -->
     <update id="modify"  parameterType="com.example.demo.pojo.Group">
         update ball_group set g_name = #{name},
                               g_avatar = #{avatar},
                               g_desc = #{desc}
         where id = #{id}
     </update>
+    <!--    删除 -->
+
     <delete id="del" parameterType="String">
         delete from ball_group where id = #{id}
     </delete>
-
+    <!--    添加 -->
     <insert id="add" parameterType="com.example.demo.pojo.Group" >
         insert into ball_group(g_name,g_avatar,g_desc,create_time) values  (#{name},#{avatar},#{desc},#{createTIme})
     </insert>
-
+    <!--    获得球队中球员的数量 -->
     <select id="getCount" parameterType="String" resultMap="total">
         select count(*) as total from ball_group,player
         where ball_group.id = player.group_id and ball_group.id = #{id};

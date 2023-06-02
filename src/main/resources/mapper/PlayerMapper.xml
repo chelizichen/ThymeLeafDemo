@@ -27,6 +27,7 @@
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
     </resultMap>
+    <!--    获得球员列表的SQL -->
     <select id="getList"  parameterType="Pagination" resultMap="Player">
         SELECT player.*
         FROM player
@@ -34,7 +35,7 @@
         WHERE ball_group.g_name LIKE #{keyword} or player.p_name LIKE #{keyword}
         limit #{offset},#{size};
     </select>
-
+    <!--    获得球员列表的SQL -->
     <update id="modify"  parameterType="com.example.demo.pojo.Player">
         update player set p_name = #{name},
                           sex = #{sex},
@@ -43,10 +44,11 @@
                           group_id = #{groupId}
         where id = #{id}
     </update>
+    <!--    删除的SQL -->
     <delete id="del" parameterType="String">
         delete from player where id = #{id}
     </delete>
-
+    <!--    添加球员的SQLSQL -->
     <insert id="add" parameterType="com.example.demo.pojo.Player">
         insert into player(p_name,sex,age,avatar,group_id,create_time) values  (#{name},#{sex},#{age},#{avatar},#{group_id},#{createTime})
     </insert>

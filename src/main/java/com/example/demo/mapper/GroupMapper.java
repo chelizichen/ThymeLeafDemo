@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * 映射到GroupMapper.xml里面的文件
+ */
 @Mapper
 @Repository
 public interface GroupMapper {

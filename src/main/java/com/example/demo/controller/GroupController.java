@@ -21,12 +21,14 @@ public class GroupController {
     private GroupService groupService;
 
 
+    // 球队修改或者添加的界面，用于指向template路由
     @GetMapping("update")
     public String update(@RequestParam(value = "id",defaultValue = "")String id,Model model){
         model.addAttribute("id",id);
         return "group/update";
     }
 
+    // 球队添加函数
     @PostMapping("add")
     @ResponseBody
     public Integer add(@RequestBody Group group){
@@ -36,14 +38,14 @@ public class GroupController {
         Integer add = groupService.add(group);
         return add;
     }
-
+    // 球队修改函数
     @PostMapping("modify")
     @ResponseBody
     public Integer modify(@RequestBody Group group){
         Integer add = groupService.modify(group);
         return add;
     }
-
+    // 球队删除函数
     @GetMapping("del")
     @ResponseBody
     public Integer delOneById(@RequestParam("id")String id){
@@ -51,7 +53,7 @@ public class GroupController {
         return del;
     }
 
-
+    // 根据分页和关键词查询球队函数
     @GetMapping("list")
     public String getList(@RequestParam(value = "page",defaultValue = "0")String page,
                           @RequestParam(value = "keyword",defaultValue = "")String keyword,

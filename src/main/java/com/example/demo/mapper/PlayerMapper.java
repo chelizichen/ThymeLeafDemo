@@ -8,7 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+/**
+ * PlayerMapper.xml里面的文件
+ */
 @Mapper
 @Repository
 public interface PlayerMapper {
