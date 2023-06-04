@@ -7,17 +7,6 @@
         <parameter property="page" javaType="string" />
         <parameter property="keywords" javaType="string" />
     </parameterMap>
-
-<!--    <parameterMap id="PlayerParam" type="com.example.demo.pojo.Player">-->
-<!--        <parameter property="id" javaType="string" />-->
-<!--        <parameter property="name" javaType="string" />-->
-<!--        <parameter property="sex" javaType="string" />-->
-<!--        <parameter property="age" javaType="string" />-->
-<!--        <parameter property="avatar" javaType="string" />-->
-<!--        <parameter property="groupId" javaType="string" />-->
-<!--        <parameter property="createTime" javaType="string" />-->
-<!--    </parameterMap>-->
-
     <resultMap type="com.example.demo.pojo.Player" id="Player">
         <result column="id" jdbcType="VARCHAR" property="id"/>
         <result column="p_name" jdbcType="VARCHAR" property="name"/>

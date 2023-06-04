@@ -9,16 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Group {
     public String id;
-
-
     public String name;
-
     // 球队图片
     public String avatar;
-
     public String desc;
-
     public String createTime;
-
-
 }

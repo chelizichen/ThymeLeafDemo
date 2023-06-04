@@ -46,7 +46,7 @@ public class PlayerController {
 
     // 修改或者添加球员的接口，对应跳转到MVC的路由中
     @GetMapping("update")
-    public String update(@RequestParam("id") String id,Model model){
+    public String update(@RequestParam(value = "id",defaultValue = "0") String id,Model model){
         model.addAttribute("id",id);
         return "player/update";
 

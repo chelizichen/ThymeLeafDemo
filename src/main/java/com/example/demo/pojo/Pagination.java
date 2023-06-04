@@ -15,40 +15,31 @@ public class Pagination {
         this.page = page;
         this.keyword = keyword;
     }
-
     public String getKeyword() {
         if(keyword == null){
             return "%%";
         }
         return "%"+keyword+"%";
     }
-
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
-
     public Integer getPage() {
         return Integer.parseInt(page);
     }
-
     public void setPage(String page) {
         this.page = page;
     }
-
-
     public Integer getOffset() {
         int i = 10 * Integer.parseInt(page);
         return i;
     }
-
     public void setOffset(String offset) {
         this.offset = offset;
     }
-
     public Integer getSize() {
         return Integer.parseInt(size);
     }
-
     public void setSize(String size) {
         this.size = size;
     }
